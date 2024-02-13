@@ -19,10 +19,49 @@ export function Island({
 
   // Use a ref for the last mouse x position
   const lastX = useRef(0);
+  // Use a ref for the last touch x position
+  const lastTouchX = useRef(0);
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0);
   // Define a damping factor to control rotation damping
   const dampingFactor = 0.95;
+
+  // Handle touch start event
+  const handleTouchStart = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setIsRotating(true);
+
+    // Store the current touch x position for reference
+    lastTouchX.current = event.touches[0].clientX;
+  };
+
+    // Handle touch end event
+    const handleTouchEnd = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setIsRotating(false);
+    };
+
+   // Handle touch move event
+   const handleTouchMove = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    if (isRotating) {
+      // If rotation is enabled, calculate the change in touch x position
+      const touchX = event.touches[0].clientX;
+      const delta = (touchX - lastTouchX.current) / viewport.width;
+
+      // Update the island's rotation based on the touch movement
+      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+
+      // Update the reference for the last touch x position
+      lastTouchX.current = touchX;
+
+      // Update the rotation speed
+      rotationSpeed.current = delta * 0.01 * Math.PI;
+    }
+  };
 
   // Handle pointer (mouse or touch) down event
   const handlePointerDown = (event) => {
@@ -97,6 +136,10 @@ export function Island({
     canvas.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
+    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+    canvas.addEventListener("touchend", handleTouchEnd);
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+
 
     // Remove event listeners when component unmounts
     return () => {
@@ -105,6 +148,9 @@ export function Island({
       canvas.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("touchmove", handleTouchMove);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
