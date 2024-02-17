@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
 import useAlert from "../hooks/useAlert";
 import { Fox } from "../models/Fox";
-import  Loader from "../components/Loader";
+import Loader from "../components/Loader";
 import Alert from "../components/Alert";
 
 const Contact = () => {
@@ -71,25 +71,57 @@ const Contact = () => {
       );
   };
 
-  return (
-    <section className='relative flex lg:flex-row flex-col max-container'>
+  const foxTopLayout = (
+    <section className="relative flex lg:flex-row flex-col max-container">
       {alert.show && <Alert {...alert} />}
 
-      <div className='flex-1 min-w-[50%] flex flex-col'>
-        <h1 className='head-text'>Get in Touch</h1>
+      <div className="flex-1 min-w-[50%] flex flex-col">
+        <div className="w-full flex justify-between h-[8vh]">
+          <h1 className=" w-2/3 head-text lg:mr-6">Get in Touch</h1>
+          <div className=" w-1/3 overflow-visible h-[270%] transform -translate-y-16">
+            <Canvas
+            
+              camera={{
+                position: [0, 0, 5],
+                fov: 75,
+                near: 0.1,
+                far: 1000,
+              }}
+            >
+              <directionalLight position={[0, 0, 1]} intensity={2.5} />
+              <ambientLight intensity={1} />
+              <pointLight position={[5, 10, 0]} intensity={2} />
+              <spotLight
+                position={[10, 10, 10]}
+                angle={0.15}
+                penumbra={1}
+                intensity={2}
+              />
+
+              <Suspense fallback={<Loader />}>
+                <Fox
+                  currentAnimation={currentAnimation}
+                  position={[0.5, 0.35, 0]}
+                  rotation={[12.629, -0.6, 0]}
+                  scale={[0.5, 0.5, 0.5]}
+                />
+              </Suspense>
+            </Canvas>
+          </div>
+        </div>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='w-full flex flex-col gap-7 mt-14'
+          className="w-full flex flex-col gap-7 mt-8"
         >
-          <label className='text-black-500 font-semibold'>
+          <label className="text-black-500 font-semibold">
             Name
             <input
-              type='text'
-              name='name'
-              className='input'
-              placeholder='John'
+              type="text"
+              name="name"
+              className="input"
+              placeholder="John"
               required
               value={form.name}
               onChange={handleChange}
@@ -97,13 +129,13 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-black-500 font-semibold'>
+          <label className="text-black-500 font-semibold">
             Email
             <input
-              type='email'
-              name='email'
-              className='input'
-              placeholder='John@gmail.com'
+              type="email"
+              name="email"
+              className="input"
+              placeholder="John@gmail.com"
               required
               value={form.email}
               onChange={handleChange}
@@ -111,13 +143,13 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-black-500 font-semibold'>
+          <label className="text-black-500 font-semibold">
             Your Message
             <textarea
-              name='message'
-              rows='4'
-              className='textarea'
-              placeholder='Write your thoughts here...'
+              name="message"
+              rows="4"
+              className="textarea"
+              placeholder="Write your thoughts here..."
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocus}
@@ -126,9 +158,77 @@ const Contact = () => {
           </label>
 
           <button
-            type='submit'
+            type="submit"
             disabled={loading}
-            className='btn'
+            className="btn"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          >
+            {loading ? "Sending..." : "Submit"}
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+
+  const originalLayout = (
+    <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
+
+      <div className="flex-1 min-w-[50%] flex flex-col">
+        <h1 className="head-text">Get in Touch</h1>
+
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="w-full flex flex-col gap-7 mt-14"
+        >
+          <label className="text-black-500 font-semibold">
+            Name
+            <input
+              type="text"
+              name="name"
+              className="input"
+              placeholder="John"
+              required
+              value={form.name}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <label className="text-black-500 font-semibold">
+            Email
+            <input
+              type="email"
+              name="email"
+              className="input"
+              placeholder="John@gmail.com"
+              required
+              value={form.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+          <label className="text-black-500 font-semibold">
+            Your Message
+            <textarea
+              name="message"
+              rows="4"
+              className="textarea"
+              placeholder="Write your thoughts here..."
+              value={form.message}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          </label>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn"
             onFocus={handleFocus}
             onBlur={handleBlur}
           >
@@ -137,7 +237,7 @@ const Contact = () => {
         </form>
       </div>
 
-      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
         <Canvas
           camera={{
             position: [0, 0, 5],
@@ -168,6 +268,12 @@ const Contact = () => {
       </div>
     </section>
   );
+
+  // Decide which layout to render based on screen size
+  const screenWidth = window.innerWidth;
+  const layout = screenWidth < 1024 ? foxTopLayout : originalLayout;
+
+  return layout;
 };
 
 export default Contact;
