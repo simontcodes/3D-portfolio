@@ -72,7 +72,7 @@ const Contact = () => {
   };
 
   const foxTopLayout = (
-    <section className="relative flex lg:flex-row flex-col max-container">
+    <section className="relative flex lg:flex-row flex-col max-container h-[100vh]">
       {alert.show && <Alert {...alert} />}
 
       <div className="flex-1 min-w-[50%] flex flex-col">
@@ -269,7 +269,6 @@ const Contact = () => {
     </section>
   );
 
-  // Decide which layout to render based on screen size
   const screenWidth = window.innerWidth;
   const layout = screenWidth < 1024 ? foxTopLayout : originalLayout;
 
