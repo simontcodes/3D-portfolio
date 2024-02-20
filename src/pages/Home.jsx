@@ -10,6 +10,8 @@ import HomeInfo from "../components/HomeInfo";
 import sakura from "../assets/sakura.mp3";
 import soundon from "../assets/icons/soundon.png";
 import soundoff from "../assets/icons/soundoff.png";
+import { socialLinks } from "../constants";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -113,6 +115,18 @@ const Home = () => {
           className=" w-10 h-10 cursor-pointer object-contain"
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
         />
+      </div>
+
+      <div className="md:absolute md:mb-4 md:left-4 flex mx-auto justify-center items-center fixed bottom-2 w-full">
+        {socialLinks.map((social) => {
+          return (
+            <div key={social.name} className="cursor-pointer m-2 w-7 h-7">
+              <Link to={social.link} target="_blank">
+                <img src={social.iconUrl} alt={social.name} />
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
