@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { socialLinks } from "../constants";
 
 const Navbar = () => {
   return (
@@ -10,6 +11,17 @@ const Navbar = () => {
       >
         <p className=" blue-gradient_text">ST</p>
       </NavLink>
+
+      <div className=" border-s-orange-50 flex justify-center items-center">
+        
+          {socialLinks.map((social) => {
+           return (
+            <div className=" cursor-pointer m-2 w-7 h-7">
+              <Link to={social.link} target="_blank"><img src={social.iconUrl} alt={social.name} /></Link>
+            </div>
+          )})}
+        
+      </div>
       <nav className=" flex text-lg gap-7 font-medium">
         <NavLink
           to="/about"
@@ -25,7 +37,7 @@ const Navbar = () => {
             isActive ? "text-blue-500" : " text-black-500"
           }
         >
-         Projects
+          Projects
         </NavLink>
         <NavLink
           to="/contact"
