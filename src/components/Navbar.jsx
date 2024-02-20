@@ -12,16 +12,15 @@ const Navbar = () => {
         <p className=" blue-gradient_text">ST</p>
       </NavLink>
 
-      <div className=" border-s-orange-50 flex justify-center items-center">
-        
-          {socialLinks.map((social) => {
-           return (
-            <div className=" cursor-pointer m-2 w-7 h-7">
-              <Link to={social.link} target="_blank"><img src={social.iconUrl} alt={social.name} /></Link>
-            </div>
-          )})}
-        
+      <div className="md:absolute md:bottom-2 md:left-4 flex justify-center items-center fixed bottom-0 w-full">
+  {socialLinks.map((social) => {
+    return (
+      <div className="cursor-pointer m-2 w-7 h-7">
+        <Link to={social.link} target="_blank"><img src={social.iconUrl} alt={social.name} /></Link>
       </div>
+    );
+  })}
+</div>
       <nav className=" flex text-lg gap-7 font-medium">
         <NavLink
           to="/about"
