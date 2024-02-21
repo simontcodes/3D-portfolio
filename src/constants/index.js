@@ -117,10 +117,10 @@ export const skills = [
 export const experiences = [
   {
     title: "Full Stack Web Developer",
-    company_name: "Starbucks",
+    company_name: "Freelance",
     icon: freelance,
     iconBg: "#accbe1",
-    date: "March 2020 - April 2021",
+    date: "Oct 2022 - Current",
     points: [
       "Collaborated with remote teams using Agile methodologies and leveraging tools like Slack, Figma and Jira to streamline project management and ensure efficient teamwork.",
       "Developed a feature for registering sales and managing inventory through CRUD operations.",
