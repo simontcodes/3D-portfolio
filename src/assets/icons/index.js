@@ -26,6 +26,10 @@ import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
+import ford from './ford.svg'
+import galac from './galac.png'
+import grand_luxe from './grand_luxe.png'
+import freelance from './freelance.png'
 
 export {
     css,
@@ -55,5 +59,9 @@ export {
     arrow,
     contact,
     soundon,
-    soundoff
+    soundoff,
+    ford,
+    galac,
+    grand_luxe,
+    freelance
 }
