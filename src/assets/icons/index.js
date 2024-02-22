@@ -30,6 +30,8 @@ import ford from './ford.svg'
 import galac from './galac.png'
 import grand_luxe from './grand_luxe.png'
 import freelance from './freelance.png'
+import rubyonrails from './rubyonrails.svg'
+import angular from './angular.svg'
 
 export {
     css,
@@ -63,5 +65,7 @@ export {
     ford,
     galac,
     grand_luxe,
-    freelance
+    freelance,
+    rubyonrails,
+    angular
 }

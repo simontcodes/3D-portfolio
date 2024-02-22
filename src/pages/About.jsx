@@ -19,9 +19,12 @@ const About = () => {
 
       <div className=" mt-5 flex flex-col gap-3 text-slate-500">
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia
-          rerum aut modi veritatis commodi corporis itaque maxime a laudantium
-          possimus qui vero, nostrum, quo quas deserunt nulla ab nemo debitis..
+          I have a strong proficiency in various programming languages and
+          technologies such as JavaScript, React, HTML, CSS, and more. With
+          experience in both frontend and backend development, I am adept at
+          creating responsive and dynamic web applications. I am also skilled in
+          problem-solving and enjoy learning new technologies to expand my
+          skillset further.
         </p>
       </div>
 
@@ -48,10 +51,16 @@ const About = () => {
         <h3 className=" subhead-text">Work Experience</h3>
         <div className=" mt-5 flex flex-col gap-3 text-slate-500">
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia
-            rerum aut modi veritatis commodi corporis itaque maxime a laudantium
-            possimus qui vero, nostrum, quo quas deserunt nulla ab nemo
-            debitis..
+            As a Full Stack Web Developer, I've crafted responsive web
+            applications utilizing technologies like React and Angular for
+            frontend development. For the backend, I've utilized Node.js with
+            Express as well as Python, and deployed applications using Azure
+            services and AWS.
+            <br />
+            My diverse work background, ranging from event management to IT help
+            desk support, enriches my perspective as a developer, enabling me to
+            approach problems creatively and communicate effectively with
+            cross-functional teams.
           </p>
         </div>
         <div className=" mt-12 flex">
@@ -103,8 +112,8 @@ const About = () => {
           </VerticalTimeline>
         </div>
       </div>
-      <hr className=" border-slate-200"/>
-      <CTA/>
+      <hr className=" border-slate-200" />
+      <CTA />
     </section>
   );
 };

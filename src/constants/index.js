@@ -28,7 +28,9 @@ import {
   ford,
   galac,
   grand_luxe,
-  freelance
+  freelance,
+  rubyonrails,
+  angular
 } from "../assets/icons";
 
 export const skills = [
@@ -112,15 +114,40 @@ export const skills = [
     name: "TypeScript",
     type: "Frontend",
   },
+  {
+    imageUrl: rubyonrails,
+    name: "Ruby On Rails",
+    type: "Backend",
+  },
+  {
+    imageUrl: angular,
+    name: "Angular",
+    type: "Frontend",
+  },
 ];
 
 export const experiences = [
   {
     title: "Full Stack Web Developer",
+    company_name: "Quantum spot media",
+    icon: freelance,
+    iconBg: "#b7e4c7",
+    date: "Dec 2023 - Present",
+    points: [
+      "Developed web applications using Angular framework, ensuring responsiveness and optimal user experience.",
+      "Utilized Python for backend development, including RESTful API design and implementation.",
+      "Implemented MongoDB for efficient data storage and retrieval, optimizing database performance.",
+      "Deployed applications on AWS cloud infrastructure, configuring services such as EC2, S3, and RDS for scalability and reliability.",
+      "Collaborated closely with a team of 5 developers, participating in code reviews, sprint planning, and daily stand-ups to ensure project milestones were met.",
+      "Contributed to architectural discussions and decision-making processes to enhance overall system design and performance.",
+    ],
+  },
+  {
+    title: "Full Stack Web Developer",
     company_name: "Freelance",
     icon: freelance,
     iconBg: "#accbe1",
-    date: "Oct 2022 - Current",
+    date: "Oct 2022 - Nov 2023",
     points: [
       "Collaborated with remote teams using Agile methodologies and leveraging tools like Slack, Figma and Jira to streamline project management and ensure efficient teamwork.",
       "Developed a feature for registering sales and managing inventory through CRUD operations.",
